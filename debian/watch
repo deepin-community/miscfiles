@@ -1,0 +1,5 @@
+version=4
+
+opts="compression=xz, dversionmangle=s/\+dfsg\d*$//, pgpsigurlmangle=s/$/.sig/, \
+      repack, repacksuffix=+dfsg" \
+https://ftp.gnu.org/gnu/miscfiles/miscfiles-(.*).tar.gz

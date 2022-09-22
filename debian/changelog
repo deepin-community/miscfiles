@@ -1,0 +1,425 @@
+miscfiles (1.5+dfsg-4) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Set debhelper-compat version in Build-Depends.
+  * Remove obsolete fields Name from debian/upstream/metadata.
+  * Update standards version to 4.5.0, no changes needed.
+
+  [ Robert Luberda ]
+  * Add 02-Fix-NA-phone-607.patch to fix na.phone zone 607 (closes: #972725).
+  * Bump debhelper's compat level to 13.
+  * Quote previous maintainer name old changelog entries to fix lintian's
+    bogus-mail-host-in-debian-changelog error.
+  * Standards-Version: 4.5.1.
+
+ -- Robert Luberda <robert@debian.org>  Tue, 22 Dec 2020 20:54:42 +0100
+
+miscfiles (1.5+dfsg-3) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/copyright: Use https protocol in Format field
+  * d/control: Set Vcs-* to salsa.debian.org
+
+  [ Robert Luberda ]
+  * Bump debhelper's compat version to 12.
+  * debian/control:
+    + mark the package as `Multi-Arch: foreign' (closes: #893683);
+    + set `Rules-Requires-Root' to `no';
+    + Standards-Version: 4.4.0.
+  * Document files removed from the upstream tarball in the `Files-Excluded'
+    field of debian/copyright and update debian/watch for automatic creation
+    of the tarball.
+  * Add DEP12 upstream metadata file (lintian).
+
+ -- Robert Luberda <robert@debian.org>  Tue, 30 Jul 2019 20:48:44 +0200
+
+miscfiles (1.5+dfsg-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Robert Luberda <robert@debian.org>  Tue, 12 May 2015 20:37:05 +0200
+
+miscfiles (1.5+dfsg-1) experimental; urgency=medium
+
+  * New upstream version 1.5 from 2010:
+    + typo in inter.phone fixed by upstream (closes: #508865).
+  * Add Added-Cities.patch from upstream git repository (5ed6bce).
+  * Add 01-Update-Unicode.patch to replace outdated unicode file
+    with more recent version (i.e. 7.0.0, closes: #695623).
+  * Update debian/rules for new upstream version.
+  * Fix capitalization and typos in us-constitution (closes: #152791).
+  * Fix debian/watch file, add upstream gpg signature (lintian).
+  * Switch debian/copyright to the DEP5 format (lintian).
+
+ -- Robert Luberda <robert@debian.org>  Fri, 03 Apr 2015 22:13:53 +0200
+
+miscfiles (1.4.2.dfsg.1-10) experimental; urgency=medium
+
+  * New maintainer (closes: #721057).
+  * Switch to the `3.0 (quilt)' source format with no initial patches.
+  * Simplify/reorganise the build process:
+    + switch to debhelper v9 and its tiny rules file format;
+    + use `gzip -n' for compressing files (closes: #778198);
+    + update build dependencies on dictionaries-common-dev;
+    + replace hard-coded dependencies with ${misc:Depends}
+      and ${wordlist:Depends}; add ${misc:Pre-Depends};
+    + remove maintainer scripts, config, templates, and let the
+      installdeb-wordlist generate the files if needed;
+    + move debian/us-{constitution,declaration} to debian/addons.
+  * Add HomePage and VCS fields to debian/control.
+  * Bump Standards-Version to 3.9.6.
+
+ -- Robert Luberda <robert@debian.org>  Sun, 29 Mar 2015 23:34:29 +0200
+
+miscfiles (1.4.2.dfsg.1-9.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Remove install-info calls from maintainer scripts.  (Closes: #603967)
+  * Fix dh_md5sums call.
+  * Add missing #DEBHELPER# tokens, even if they don't get substituted.
+
+ -- Andreas Beckmann <anbe@debian.org>  Tue, 20 Aug 2013 10:03:11 +0200
+
+miscfiles (1.4.2.dfsg.1-9) unstable; urgency=low
+
+  * debian/rules (stamp-configure): Quote $(CFLAGS) properly.  (Closes:
+    #467257)  Thanks to Steve Langasek for the patch.
+
+  * debian/source.lintian-overrides: Remove file since
+    not-using-po-debconf is no longer a lintian tag.
+
+  * debian/rules (stamp-binary): Call dh_md5sums toward the end.
+  * debian/control (Build-Depends): New variable to require debhelper.
+  * debian/compat: New file (level 6).
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Sun, 24 Feb 2008 18:40:51 -0500
+
+miscfiles (1.4.2.dfsg.1-8) unstable; urgency=low
+
+  * debian/control (Standards-Version): Update to 3.7.3.  No changes necessary.
+
+  * debian/copyright: Include the unicode license here.
+  * debian/rules (stamp-binary): Don't install unicode license here.
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Mon, 14 Jan 2008 15:56:16 -0500
+
+miscfiles (1.4.2.dfsg.1-7) unstable; urgency=low
+
+  * debian/templates: Can't have comments if we aren't using po-debconf.
+    Good grief.  (Closes: #391116)
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Wed,  4 Oct 2006 18:36:52 -0700
+
+miscfiles (1.4.2.dfsg.1-6) unstable; urgency=low
+
+  * Grr; I forgot we can't internationalize dictionaries-common strings.
+    (See bug 369172).
+  * debian/templates: Revert last change; add comment explaining why.
+  * debian/control: Don't require po-debconf.
+  * debian/po: Delete directory and its contents.
+    (Closes: #391012, #391013, #391058)
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Wed,  4 Oct 2006 10:11:53 -0700
+
+miscfiles (1.4.2.dfsg.1-5) unstable; urgency=low
+
+  * debian/po/POTFILES.in: New file.
+  * debian/templates: Put underscores before appropriate items.
+  * Run debconf-updatepo.
+  * debian/control (Build-Depends): Add po-debconf.
+
+  * debian/control (Standards-Version): Update to 3.7.2.
+
+  * debian/control (Description): Remove trailing period in synopsis.
+
+  * debian/rules (stamp-binary): Install upstream ChangeLog as "changelog"
+    instead of "ChangeLog".
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Mon,  2 Oct 2006 23:46:34 -0700
+
+miscfiles (1.4.2.dfsg.1-4) unstable; urgency=low
+
+  * debian/templates: Grr, comments are not allowed in this file.  So just
+    take out all the Swedish bits entirely.  (Closes: #369310)
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Sun, 28 May 2006 17:35:48 -0700
+
+miscfiles (1.4.2.dfsg.1-3) unstable; urgency=low
+
+  * Grr, actually *make* the previous change.
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Sat, 27 May 2006 17:40:03 -0700
+
+miscfiles (1.4.2.dfsg.1-2) unstable; urgency=low
+
+  * debian/templates: Comment out Swedish bits; dictionaries-common can't
+    deal with translations of the /languages template.  (Closes: #359865)
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Sat, 27 May 2006 16:01:29 -0700
+
+miscfiles (1.4.2.dfsg.1-1) unstable; urgency=low
+
+  * New repackaged tarball, removing GNU-manifesto to satisfy DFSG.
+  * debian/README.Debian-source: New file, documenting source changes.
+  (Closes: #353515)
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Sun, 19 Feb 2006 14:16:47 -0800
+
+miscfiles (1.4.2-3) unstable; urgency=low
+
+  * debian/control: Allow debconf-2.0 as an alternative to
+    debconf. (Closes: #332026)
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Wed,  5 Oct 2005 00:12:40 -0700
+
+miscfiles (1.4.2-2) unstable; urgency=low
+
+  * debian/template: Include Swedish bits. (Closes: #331019)
+
+  * debian/watch: New file.
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Fri, 30 Sep 2005 20:27:43 -0700
+
+miscfiles (1.4.2-1) unstable; urgency=low
+
+  * New upstream release.  (Closes: #280908)
+
+  * debian/us-constitution, debian/us-declaration: New files (these were
+    removed from upstream).
+  * debian/rules: Install both files into usr/share/state where they used
+    to be.
+
+  * debian/control (miscfile): Don't depend on coreutils. (Closes: #316426)
+
+  * debian/copyright: Tell where to find the GPL on Debian.
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Wed, 31 Aug 2005 23:28:03 -0700
+
+miscfiles (1.3-7) unstable; urgency=low
+
+  * debian/postinst: Remove fancy /usr/doc handling. (Closes: #322793)
+  * debian/prerm: Likewise.
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Sun, 14 Aug 2005 22:37:49 -0700
+
+miscfiles (1.3-6) unstable; urgency=high
+
+  * This was supposed to be urgency=high.
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Fri, 20 Aug 2004 13:10:39 -0700
+
+miscfiles (1.3-5) unstable; urgency=low
+
+  * This release anticipates the upcoming GNU miscfiles 1.4 release, which
+    is not yet provided by upstream.  See the included ChangeLog for a
+    full description of the changes, as if they were upstream changes.
+    Changes from 1.3-3.1 and 1.3-3.2 are reverted as they were, but this
+    new release includes fixes of the relevant bugs.  Closes:
+    Bug#147321, Bug#150264, Bug#167493, Bug#175700, Bug#180479,
+    Bug#190347, Bug#249867, Bug#249871, Bug#249879, Bug#249897,
+    Bug#250068, Bug#235817, Bug#232164, Bug#249882, Bug#264088.
+
+  * debian/rules: Don't need to do anything with info files anymore.
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Thu, 19 Aug 2004 23:12:43 -0700
+
+miscfiles (1.3-4) unstable; urgency=low
+
+  * Don't depend on fileutils at all; it is now extra and we can't depend
+    on such packages.
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Tue, 10 Aug 2004 12:56:42 -0700
+
+miscfiles (1.3-3.2) unstable; urgency=high
+
+  * debian/control: Don't require specific version number of coreutils.
+  * NB: Bug reports closed by 1.3-3.1 NMU have been re-opened; that NMU
+  shouldn't have happened.  But there's no point in reverting it now; a
+  new upstream release is pending.
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Fri,  6 Aug 2004 17:08:56 -0700
+
+miscfiles (1.3-3.1) unstable; urgency=low
+
+  * NMU
+  * debian/control:
+    - depends on fileutils | coreutils (>= 5.2.1) instead
+      of fileutils; (Closes: #167493, #175700)
+    - Build-Depend-Indep on the patch package;
+    - removed ending dot from the description synopsis;
+  * fixed typos and missing info in na.phone.
+    (Closes: #249871, #249867, #150264)
+  * removed duplicate entries in na.phone and currency.
+    (Closes: #250068)
+  * fixed "Martinique", "Colombia" and "Philippines" in inter.phone.
+    (Closes: #249897, #249879, #249882)
+  * fixed typo for CDG entry in airport. (Closes: #249867)
+  * refreshed the text of the US constitution with the one found at:
+    http://www.archives.gov/national_archives_experience/charters/constitution_transcript.html
+    (Closes: #190347, #152791)
+  * fixed entries for Quebec and Saskatchewan in postal.codes.
+    (Closes: #147321)
+  * Patches for modification to upstream files are put in
+    $(topdir)/debian/patches/. Code added to debian/rules to handle them.
+
+ -- Wolfgang Sourdeau <was@debian.org>  Fri,  6 Aug 2004 01:21:52 -0400
+
+miscfiles (1.3-3) unstable; urgency=low
+
+  * Conform to new Debian wordlists policy.  Closes: Bug#164254,
+    Bug#166071.
+
+ -- "Thomas Bushnell, BSG" <tb@becket.net>  Tue, 29 Oct 2002 20:54:12 -0800
+
+miscfiles (1.3-2) unstable; urgency=low
+
+  * Priority should be 'optional'.
+
+ -- "Thomas Bushnell, BSG" <tb@becket.net>  Sat, 29 Dec 2001 13:19:42 -0800
+
+miscfiles (1.3-1) unstable; urgency=high
+
+  * New public GNU version.  This closes: Bug#103026, Bug#116944, Bug#77252,
+    Bug#89119, Bug#110633, Bug#119976, Bug#114269.
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Fri, 21 Dec 2001 19:35:06 -0700
+
+miscfiles (1.2-2) unstable; urgency=low
+
+  * Whoops, restore the changes made in woody.  The 1.1-13 change is no
+    longer relevant to 1.2, but 1.1-14 is.
+
+ -- "Thomas Bushnell, BSG" <tb@becket.net>  Sat, 21 Oct 2000 07:48:19 -0700
+
+miscfiles (1.2-1) unstable; urgency=low
+
+  * New public GNU version.
+  * README.debian: match current reality.
+  * control: new maintainer, update description.
+  * rules (stamp-binary): jargon file has changed location in miscfiles.
+
+ -- "Thomas Bushnell, BSG" <tb@debian.org>  Fri, 20 Oct 2000 22:19:25 -0700
+
+miscfiles (1.1-14) unstable; urgency=low
+
+  * rfc-index has gotten really out of date, and indeed, the doc-rfc
+    package provides everything needed. closes: Bug#72285
+
+ -- Manoj Srivastava <srivasta@debian.org>  Wed, 27 Sep 2000 12:51:49 -0500
+
+miscfiles (1.1-13) unstable; urgency=low
+
+  * Monterey, CA changed area codes some time ago.  The new area, 831, was
+    added to na.phones.gz, but the old area code, 408, has not been
+    removed. This closes: Bug#67131
+
+ -- Manoj Srivastava <srivasta@debian.org>  Wed, 26 Jul 2000 14:35:18 -0500
+
+miscfiles (1.1-12) frozen unstable; urgency=low
+
+  * Use absolute links when related links would not work, for the
+    /usr/doc/ symlink.
+  * Added a dependency on fileutiles >=4.0, since the package would fail
+    to install with older fileutils.
+
+ -- Manoj Srivastava <srivasta@debian.org>  Tue, 28 Mar 2000 02:08:47 -0600
+
+miscfiles (1.1-11) frozen unstable; urgency=low
+
+  * It is frozen, not froxen. This brings in the symlink fix back into
+    frozen. closes: Bug#58335, Bug#57809, Bug#57308
+  * Fixed an upgrade bug when /usr/doc happens to be a symlink, and does
+    not point to /usr/share/doc. A couple of people were bitten by this.
+
+ -- Manoj Srivastava <srivasta@debian.org>  Mon, 28 Feb 2000 22:27:05 -0600
+
+miscfiles (1.1-10) froxen unstable; urgency=low
+
+  * fix a typo in the rules file that made an interesting symlink.
+    closes: Bug#58335, Bug#57809, Bug#57308
+
+ -- Manoj Srivastava <srivasta@debian.org>  Sat, 19 Feb 2000 13:15:06 -0600
+
+miscfiles (1.1-9) frozen unstable; urgency=low
+
+  * The postinst was vulnerable to being affected by symlinks (if, for
+    some reason, the prerm failed). This has happended for latex2html; and
+    created a grave bug.
+  * There was a bug in the postinst in a case statement, that caused
+    installation to fail for certain situations.
+  * Also fixed an lintian warning
+
+ -- Manoj Srivastava <srivasta@debian.org>  Tue,  8 Feb 2000 15:35:11 -0600
+
+miscfiles (1.1-8) frozen unstable; urgency=low
+
+  * Added new abbreviations to the package. Hopefully, all this shall be
+    in the new upstream package due out in a month or so. closes: Bug#57021
+
+ -- Manoj Srivastava <srivasta@debian.org>  Mon,  7 Feb 2000 02:12:26 -0600
+
+miscfiles (1.1-7) unstable; urgency=low
+
+  * Refreshed the list of Area codes. This is upto date as of the NANP
+    updates of May 3, 1999. Paaed this upstream.
+    closes: Bug#36968, Bug#18216, Bug#25211
+  * Updated to Standards version 2.5.1. No changes were needed.
+  * Fixed a typo in the US constitution (Article III appeared twice, and
+    there was no Article II). Also, added the date when the XX amendment
+    was passed and when it was ratified.  closes: Bug#33833, Bug#25171
+  * Made this package provide wordlist, since web2 has lots more words
+    than wenglish. closes: Bug#29568
+  * Updated all maintainers scripts to my latest standards'
+
+ -- Manoj Srivastava <srivasta@debian.org>  Fri, 14 May 1999 15:54:08 -0500
+
+miscfiles (1.1-6) unstable; urgency=low
+
+  * Removed duplication of the GNU Manifesto. closes: BUG#29565
+
+ -- Manoj Srivastava <srivasta@debian.org>  Wed, 25 Nov 1998 02:18:23 -0600
+
+miscfiles (1.1-5) unstable; urgency=low
+
+  * Provided links for these files in /usr/doc/$(package). Closes:
+    Bug#18218
+
+ -- Manoj Srivastava <srivasta@debian.org>  Thu, 19 Feb 1998 04:38:34 -0600
+
+miscfiles (1.1-4) unstable; urgency=low
+
+  * Updated to standards version 2.4.0.0
+  * This fixes a future lintian report. However, there is still a spurious
+    lintian warning.
+
+ -- Manoj Srivastava <srivasta@debian.org>  Mon,  9 Feb 1998 13:27:55 -0600
+
+miscfiles (1.1-3) unstable; urgency=low
+
+  * Make sure the copyright file is not compressed. closes:Bug#14495.
+  * Do not install INSTALL into /usr/doc, since this only has generic
+    installation instructions, and is irrelevant on Debian machines.
+  * Added information to a previously empty README.debian
+    file. closes:Bug#14130.
+
+ -- Manoj Srivastava <srivasta@debian.org>  Wed,  5 Nov 1997 13:31:34 -0600
+
+miscfiles (1.1-2) unstable; urgency=low
+
+  * Expanded description in the control file. This fixes Bug#8972
+
+ -- Manoj Srivastava <srivasta@debian.org>  Wed, 23 Apr 1997 13:58:50 -0500
+
+miscfiles (1.1-1) unstable; urgency=low
+
+  * Removed debstd from rules file
+  * new maintainer
+  * New upstream source
+
+ -- Manoj Srivastava <srivasta@debian.org>  Fri, 28 Mar 1997 09:44:05 -0600
+
+miscfiles (1.0-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- Herbert Xu <herbert@debian.org>  Mon, 10 Feb 1997 21:44:40 +1100

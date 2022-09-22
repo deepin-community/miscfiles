@@ -1,0 +1,2 @@
+debian/addons/us-constitution usr/share/state
+debian/addons/us-declaration  usr/share/state

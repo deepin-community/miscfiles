@@ -1,0 +1,26 @@
+From: Jonathan Farnham <jonathan@haitu-yu.com>
+Date: Thu, 22 Oct 2020 21:28:26 -0400
+Subject: Fix zone 607 in na.phone
+
+There is an error in the na.phone file, on line 1206
+("607:Birmingham:New York:NY"). It should be:
+"607:Binghamton:New York:NY".
+
+Bugs-Debian: https://bugs.debian.org/972725
+---
+ na.phone | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/na.phone b/na.phone
+index 9cc657c..90b6095 100644
+--- a/na.phone
++++ b/na.phone
+@@ -1203,7 +1203,7 @@
+ 605:Sioux Falls:South Dakota:SD
+ 605:Watertown:South Dakota:SD
+ 606:Ashland:Kentucky:KY
+-607:Birmingham:New York:NY
++607:Binghamton:New York:NY
+ 607:Elmira:New York:NY
+ 607:Ithaca:New York:NY
+ 608:Beloit:Wisconsin:WI

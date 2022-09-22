@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+
+package           := miscfiles
+packagedir        := $(CURDIR)/debian/$(package)
+dictfiles         := $(shell sed -ne 's/^dictfiles *= *//p' Makefile.am)
+
+%:
+	dh "$@"
+
+override_dh_auto_install:
+	dh_auto_install -v -- rfcfiles= SHELL="/bin/sh -e"
+	cd $(packagedir)/usr/share && \
+	  mkdir misc dict && \
+	  mv -t dict $(dictfiles) && \
+	  find . -maxdepth 1 -type f -exec mv -t misc {} ';'
+	installdeb-wordlist -p$(package)
+
+override_dh_compress:
+	find $(packagedir)/usr/share/ -type f '!' -path '*/doc/*' '!' -name web2 \
+	  -exec gzip -9nf {} ';'
+	cd $(packagedir)/usr/share/doc/$(package) && \
+	  set -- ../../misc/*.gz && \
+	  ln -st . "$$@"
+	dh_compress
